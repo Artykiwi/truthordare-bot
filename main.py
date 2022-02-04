@@ -3,29 +3,68 @@ import os
 from keep_alive import keep_alive
 import random
 
-tod_questions = [
-    "I cant think of tod tod questions",
-]
-
 client = discord.Client()
+
 
 @client.event
 async def on_ready():
-  print ("we have logged in as {0.user}"
-  .format(client))
+    print("we have logged in as {0.user}".format(client))
+
 
 @client.event
 async def on_message(message):
-  if message.author == client.user:
-    return
+    if message.author == client.user:
+        return
 
-  if message.content.startswith('!ping'):
-    await message.channel.send('pong')
-    print ("pong")
-    
-  if message.content.startswith('!tod'):
-    print ("tod command used")
-    await message.channel.send(random.choice(tod_questions))
+#ping command
+
+    if message.content.startswith('.ping'):
+        await message.channel.send('pong')
+        print("pong")
+
+#tod command
+
+    tod_questions = [
+        "Post an embarrassing picture of yourself",
+        "Dm the first person in your dms I love you",
+        "Who do you admire?",
+        "Do you sleep with a stuffed animal?",
+        "What's your favorite song?",
+    ]
+
+    if message.content.startswith('.tod'):
+        await message.channel.send(random.choice(tod_questions))
+        print("tod command used")
+
+
+#8ball
+
+    _8ball_awnsers = [
+        "It is certain.",
+        "It is decidedly.",
+        "Without a doubt.",
+        "Yes definitely.",
+        "You may rely on it.",
+        "As i see it,yes.",
+        "Most likely.",
+        "Outlook good.",
+        "Yes.",
+        "Signs point to yes.",
+        "Reply hazy,try again.",
+        "Ask again later.",
+        "Better not tell you now.",
+        "Cannot predict now.",
+        "Concentrate and ask again.",
+        "Don't count on it.",
+        "My reply is no.",
+        "My sources say no.",
+        "Outlook not so good.",
+        "Very doubtful.",
+    ]
+
+    if message.content.startswith('.8ball'):
+        await message.channel.send(random.choice(_8ball_awnsers))
+        print("8ball command used")
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
