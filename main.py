@@ -2,6 +2,7 @@ import discord
 import os
 from keep_alive import keep_alive
 import random
+import time
 
 client = discord.Client()
 
@@ -65,6 +66,16 @@ async def on_message(message):
     if message.content.startswith('.8ball'):
         await message.channel.send(random.choice(_8ball_awnsers))
         print("8ball command used")
+
+#anime commands
+
+#show me rock
+
+    if message.content.startswith('.rock'):
+        await message.channel.send("SHOW ME ROCK!")
+        time.sleep(1)
+        await message.channel.send("https://tenor.com/view/gon-hunter-x-hunter-anime-rock-paper-scissors-attack-gif-17309978")
+        print("rock command used")
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
